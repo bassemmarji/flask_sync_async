@@ -1,0 +1,29 @@
+[2021-05-05 11:12:47,310: DEBUG/MainProcess] TaskPool: Apply <function _fast_trace_task at 0x0000022DC371EC18> (args:('tasks.long_async_sch_task', 'd654b242-fcdd-4db5-b159-14c25a9af639', {'lang': 'py', 'task': 'tasks.long_async_sch_task', 'id': 'd654b242-fcdd-4db5-b159-14c25a9af639', 'shadow': None, 'eta': '2021-05-05T11:12:47.295740+03:00', 'expires': None, 'group': None, 'group_index': None, 'retries': 0, 'timelimit': [None, None], 'root_id': 'd654b242-fcdd-4db5-b159-14c25a9af639', 'parent_id': None, 'argsrepr': "[{'sessionid': '515df573-27d9-4740-a480-9d97db703ac7', 'waittime': 7, 'namespase': '/runPSATask', 'duration': 10}]", 'kwargsrepr': '{}', 'origin': 'gen9240@TMSDBP', 'reply_to': '93c93d76-c1d0-3a26-ae4b-4fa6f61405ce', 'correlation_id': 'd654b242-fcdd-4db5-b159-14c25a9af639', 'hostname': 'celery@TMSDBP', 'delivery_info': {'exchange': '', 'routing_key': 'celery', 'priority': 0, 'redelivered': None}, 'args': [{'sessionid': '515df573-27d9-4740-a480-9d97db703ac7', 'waittime': 7, 'namespase': '/runPSATask', 'duration': 10}], 'kwargs': {}}, b'[[{"sessionid": "515df573-27d9-4740-a480-9d97db703ac7", "waittime": 7,... kwargs:{})
+[2021-05-05 11:12:47,310: DEBUG/MainProcess] Task accepted: tasks.long_async_sch_task[d654b242-fcdd-4db5-b159-14c25a9af639] pid:8336
+[2021-05-05 11:12:47,310: WARNING/MainProcess] Message =
+[2021-05-05 11:12:47,310: WARNING/MainProcess] Begin
+[2021-05-05 11:12:47,310: WARNING/MainProcess] Message =
+[2021-05-05 11:12:47,310: WARNING/MainProcess] Begin Task d654b242-fcdd-4db5-b159-14c25a9af639
+[2021-05-05 11:12:47,310: WARNING/MainProcess] Message =
+[2021-05-05 11:12:47,310: WARNING/MainProcess] This task will take 7 seconds
+[2021-05-05 11:12:47,310: WARNING/MainProcess] This task will take 7 seconds.
+[2021-05-05 11:12:47,310: WARNING/MainProcess] Message =
+[2021-05-05 11:12:47,310: WARNING/MainProcess] 0
+[2021-05-05 11:12:48,326: WARNING/MainProcess] Message =
+[2021-05-05 11:12:48,326: WARNING/MainProcess] 1
+[2021-05-05 11:12:49,342: WARNING/MainProcess] Message =
+[2021-05-05 11:12:49,342: WARNING/MainProcess] 2
+[2021-05-05 11:12:50,357: WARNING/MainProcess] Message =
+[2021-05-05 11:12:50,357: WARNING/MainProcess] 3
+[2021-05-05 11:12:51,373: WARNING/MainProcess] Message =
+[2021-05-05 11:12:51,373: WARNING/MainProcess] 4
+[2021-05-05 11:12:52,388: WARNING/MainProcess] Message =
+[2021-05-05 11:12:52,388: WARNING/MainProcess] 5
+[2021-05-05 11:12:53,404: WARNING/MainProcess] Message =
+[2021-05-05 11:12:53,404: WARNING/MainProcess] 6
+[2021-05-05 11:12:54,419: WARNING/MainProcess] Message =
+[2021-05-05 11:12:54,419: WARNING/MainProcess] End Task d654b242-fcdd-4db5-b159-14c25a9af639
+[2021-05-05 11:12:54,419: WARNING/MainProcess] Message =
+[2021-05-05 11:12:54,419: WARNING/MainProcess] End
+[2021-05-05 11:12:54,419: INFO/MainProcess] Task tasks.long_async_sch_task[d654b242-fcdd-4db5-b159-14c25a9af639] succeeded in 7.108999999938533s: None
+[
