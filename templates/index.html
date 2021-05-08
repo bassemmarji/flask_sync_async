@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Synchronicity versus Asynchronicity</title>
+    <!--CSS to format the layout of our web page -->
+    <link rel="stylesheet" href="{{url_for('static',filename='css/materialize.min.css')}}">
+    <!-- import the jquery library -->
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  
+  <body class="container">
+    <div class="container">
+      <!-- Descriptive Label -->
+      <h4>Click to start a sycnhronous task</h4>
+    </div>
+
+    <div class="card-panel">
+      <form method='post' id="runTaskForm" action="/runSyncTask">
+          <!-- button for running a synchronous task -->
+          <button style="height:50px;width:400px" type="submit" id="runTask">Run A Synchronous Task</button>
+      </form>
+    </div>
+
+    <!-- for showing resulting messages -->
+    <div class="row">
+       <div id="Messages" class="red-text">  </div>
+    </div>
+
+    <script>
+      $("#runTask").click(function(e) {
+         //Disable the button
+         $("#runTask").attr("disabled",true);
+         //Change the cursor state
+         $("*").css("cursor","wait");
+         //Empty the messages box
+         $("#Messages").empty();
+         //Initiate an ajax call
+         $.ajax({ type: "Post"
+                  //Map to the flask endpoint
+                , url: '/runSyncTask'
+                , data: $("#runTaskForm").serialize()
+                , success: function(data) {
+                    //Enable the button
+                    $("#runTask").attr("disabled",false);
+                    //Revert back the cursor state
+                    $("*").css("cursor","");
+                    //Display a message indicating the success using the waitime parameter returned by Flask
+                    $("#Messages").append('The task was executed in synchronous manner for ' + data.waittime + ' seconds...');
+                  }
+                });
+         //Prevents the browser from executing the default action
+         e.preventDefault();
+         //Log the event
+         console.log('runSyncTask complete');
+      });
+    </script>
+
+  </body>
+</html>

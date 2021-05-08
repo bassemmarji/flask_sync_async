@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Synchronicity versus Asynchronicity</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/materialize.min.css')}}">
+    <script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/socket.io.js') }}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  </head>
+  
+  <body class="container">
+    <div class="row">
+        <h5>Click to start a post scheduled ansycnhronous task with automatic feedback.</h5>
+    </div>
+
+    <div class="card-panel">
+      <form method='post' id="runTaskForm" action="/runPSATask">
+          <div>
+             <input id="duration" name="duration" placeholder="Enter duration in seconds. for example: 30" type="text">
+             <label for="duration">Duration</label>
+          </div>
+          <button style="height:50px;width:600px" type="submit" id="runTask">Run A Post Scheduled Asynchronous Task With Automatic Feedback</button>
+      </form>
+    </div>
+
+    <div class="row">
+        <div id="Messages" class="red-text" style="width:800px; height:400px; overflow-y:scroll;"></div>
+    </div>
+
+    <script>
+      $(document).ready(function(){
+        var namespace='/runPSATask';
+        var url = 'http://' + document.domain + ':' + location.port + namespace;
+        var socket = io.connect(url);
+        socket.on('connect', function() {
+                             socket.emit('join_room');
+                            });
+
+        socket.on('msg' , function(data) {
+                            $("#Messages").prepend('<li>'+data.msg+'</li>');
+                          });
+
+        socket.on('status', function(data) {
+                            ////alert('socket on status ='+ data.msg);
+                            if (data.msg == 'End') {
+                                $("#runTask").attr("disabled",false);
+                            };
+                          });
+      });
+    </script>
+
+    <script>
+      $("#runTask").click(function(e) {
+         $("#runTask").attr("disabled",true);
+         $("#Messages").empty();
+         $.ajax({ type: "Post"
+                , url: '/runPSATask'
+                , data: $("#runTaskForm").serialize()
+                , success: function(data) {
+                    $("#Messages").empty();
+                    $("#Messages").prepend('<li>The Task ' + data.taskid + ' has been submitted and will execute in ' + data.duration + ' seconds. </li>');
+                  }
+                });
+         e.preventDefault();
+         console.log('runPSATask complete');
+      });
+    </script>
+  </body>
+</html>
